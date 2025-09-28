@@ -45,14 +45,15 @@ class Obstacle {
     elementDefault = document.createElement("div");
     newElement;
 
-    move() {
-        this.position -= 1;
-    }
-
     update() {
         this.newElement.style.height = this.height * 5 + "%";
         this.newElement.style.width = this.width * 2 + "%";
         this.newElement.style.left = this.position + "%";
+    }
+
+    move() {
+        this.position -= 1;
+        update();
     }
 
     constructor() {
