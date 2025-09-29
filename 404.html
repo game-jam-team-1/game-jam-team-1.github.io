@@ -21,15 +21,13 @@
     #player {
         background-color: red;
         position: relative;
-        width: 5%;
+        width: 2.5%;
         height: 5%;
-        left: 5%;
+        left: 2.5%;
     }
     .obstacle {
         background-color: blue;
         position: relative;
-        width: 2%;
-        height: 5%;
         bottom: 0;
     }
 </style>
@@ -38,10 +36,19 @@
 
 let gameRunning = false;
 let score = 0;
+let counter = 0;
 
-const player = document.getElementById("player");
-let height = 0;
-player.style.bottom = height;
+let obstacles = [];
+
+const player = {
+    element: document.getElementById("player"),
+    height: 0,
+    jumpState: "up",
+    jump() {
+        return;
+    }
+};
+player.element.style.bottom = player.height;
 
 class Obstacle {
     height;
@@ -52,8 +59,12 @@ class Obstacle {
 
     update() {
         this.newElement.style.height = this.height * 5 + "%";
-        this.newElement.style.width = this.width * 2 + "%";
-        this.newElement.style.left = this.position + "%";
+        this.newElement.style.width = this.width * 2.5 + "%";
+        this.newElement.style.left = this.position / 2 + "%";
+    }
+
+    eliminate() {
+        newElement.remove();
     }
 
     move() {
@@ -64,15 +75,25 @@ class Obstacle {
     constructor() {
         this.height = Math.floor(Math.random() * 2);
         this.width = Math.floor(Math.random() * 3);
-        this.position = 100;
+        this.position = 200;
 
-        this.newElement = document.getElementById("gamescreen").appendChild(elementDefault);
+        this.newElement = document.getElementById("gamescreen").appendChild(this.elementDefault);
         update();
     }
 }
 
 while (gameRunning) {
-    
+    if (counter == 0) {
+        obstacles[obstacles.length] = new Obstacle();
+        counter = 200 * Math.floor(Math.random() * 5);
+    }
+    counter -= 1;
+
+    for (i = 0; i < obstacles.length; i++;) {
+        obstacles[i].move();
+
+
+    }
 }
 
 </script>
