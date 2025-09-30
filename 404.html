@@ -45,7 +45,15 @@ const player = {
     height: 0,
     jumpState: "up",
     jump() {
-        return;
+        if (height == 0) {
+            if (height >= 20) {
+                jumpState = "down";
+            } else {
+                jumpState = "up";
+            }
+        } else {
+            return;
+        }
     }
 };
 player.element.style.bottom = player.height;
@@ -105,6 +113,9 @@ while (gameRunning) {
 <h1>404</h1>
 <h2>Page not found</h2>
 
+<button id="startbutton"></button>
+<button id="jumpbutton"></button>
+<span id="scorespan"></span>
 <div id="gamescreen">
     <div id="player"></div>
 </div>
