@@ -58,6 +58,11 @@ const player = {
 };
 player.element.style.bottom = player.height;
 
+let startListener = document.getElementById("startbutton").addEventListener("click", function () {
+    gameRunning = true;
+});
+let jumpListener = document.getElementById("jumpbutton").addEventListener("click", player.jump());
+
 class Obstacle {
     height;
     width;
@@ -99,7 +104,9 @@ while (gameRunning) {
 
     for (i = 0; i < obstacles.length; i++) {
         obstacles[i].move();
-
+        if (obstacles[i].position < 0 - obstacles[i].width * 5) {
+            obstacles.shift().eliminate();
+        }
 
     }
 }
