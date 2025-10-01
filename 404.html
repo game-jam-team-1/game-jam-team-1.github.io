@@ -58,7 +58,7 @@ const player = {
 };
 player.element.style.bottom = player.height;
 
-let startListener = document.getElementById("startbutton").addEventListener("click", function () {
+let startListener = document.getElementById("startbutton").addEventListener("click", function (e) {
     gameRunning = true;
 });
 let jumpListener = document.getElementById("jumpbutton").addEventListener("click", player.jump());
@@ -82,7 +82,7 @@ class Obstacle {
 
     move() {
         this.position -= 1;
-        update();
+        this.update();
     }
 
     constructor() {
@@ -90,8 +90,9 @@ class Obstacle {
         this.width = Math.floor(Math.random() * 3);
         this.position = 200;
 
+        this.elementDefault.className("obstacle");
         this.newElement = document.getElementById("gamescreen").appendChild(this.elementDefault);
-        update();
+        this.update();
     }
 }
 
@@ -109,6 +110,7 @@ while (gameRunning) {
         }
 
     }
+
 }
 
 </script>
